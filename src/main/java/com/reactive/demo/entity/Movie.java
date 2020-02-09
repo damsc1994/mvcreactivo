@@ -1,7 +1,9 @@
 package com.reactive.demo.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("movies")
 public class Movie {
 	@Id
 	private Long id;

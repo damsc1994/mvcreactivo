@@ -15,10 +15,13 @@ import com.reactive.demo.handler.MovieHandler;
 @EnableWebFlux
 public class MovieRouter implements WebFluxConfigurer{
 	
-	@Bean
+	 @Bean
 	 public RouterFunction<ServerResponse> routeShow(MovieHandler movieHandler) {
 	    return RouterFunctions
 	      .route(RequestPredicates.GET("/movies"), movieHandler::all)
-	      .andRoute(RequestPredicates.POST("/movies/add"), movieHandler::add);
+	      .andRoute(RequestPredicates.POST("/movies/add"), movieHandler::add)
+	      .andRoute(RequestPredicates.GET("/movies/redis"), movieHandler::allRedis)
+	      .andRoute(RequestPredicates.POST("/movies/redis/add"), movieHandler::addRedis)
+	      .andRoute(RequestPredicates.GET("/movies/redis/{id}"), movieHandler::getById);
 	 }
 }
